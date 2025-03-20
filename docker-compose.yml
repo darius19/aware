@@ -1,0 +1,39 @@
+
+services:
+  frontend:
+    build: ./front
+    image: react-img
+    container_name: react-app
+    volumes:
+      - ./front/build:/app/build
+    command: ["sh", "-c", "npm run build && tail -f /dev/null"]
+
+  nginx:
+    build:
+      context: ../
+      dockerfile: project/nginx/Dockerfile
+    image: nginx-img
+    container_name: nginx-server
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - certbot_challenge:/var/www/certbot
+      - /etc/letsencrypt:/etc/letsencrypt
+      - ./front/build:/usr/share/nginx/html
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - frontend
+    restart: always
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot_challenge:/var/www/certbot
+      - /etc/letsencrypt:/etc/letsencrypt
+    entrypoint: sh -c "sleep infinity"
+
+volumes:
+  certbot_challenge:
+  certbot_letsencrypt:

@@ -1,0 +1,21 @@
+# Ignorăm modulele Node.js și fișierele generate automat
+node_modules/
+build/
+dist/
+.env
+.DS_Store
+
+# Excludem datele Let's Encrypt și Certbot
+certbot/
+letsencrypt/
+etc/letsencrypt/
+var/www/certbot/
+project_certbot_challenge/
+project_certbot_letsencrypt/
+
+# Ignorăm fișierele de configurare locală Docker și cache
+*.log
+*.pid
+*.sock
+*.db
+docker-compose.override.yml
