@@ -1,4 +1,45 @@
+@media screen and (max-width: 1350px) {
+  header .main-header,
+  header .top-header {
+    padding: 0 40px;
+  }
+  header .burger-buttons {
+    margin-left: 10px;
+  }
+}
 @media screen and (max-width: 1250px) {
+  .events .about-aware {
+    flex-direction: column;
+  }
+  .events .about-aware div:has(.add-event.button.primary) {
+    order: 1;
+    max-width: 250px;
+    width: 100%;
+  }
+  .events .about-aware div:has(.add-event.button.primary) .button {
+    width: 100%;
+    max-width: 100%;
+  }
+  .events .events-container .event .content-wrapper .content {
+    flex-direction: column;
+    max-width: 600px;
+  }
+  .add-event.button.primary {
+    position: relative;
+    top: unset;
+    right: unset;
+    transform: none;
+  }
+  .events .events-container .event .content-wrapper .content .submit-button {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .events .events-container .event .content-wrapper .content .item {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: none;
+    border-bottom: 1px solid #fff;
+  }
   header .links > .link {
     display: none;
   }
@@ -40,6 +81,21 @@
   }
 }
 @media screen and (max-width: 1100px) {
+  .register .container .box .grid-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .forgot-button,
+  .register .container .box .grid-2 .input-container {
+    max-width: 400px;
+  }
+  .register .container .box {
+    flex-direction: column;
+  }
+  .register .container .box .image {
+    display: none;
+  }
   .homepage .contact-box .row {
     flex-direction: column;
     align-items: center;
@@ -75,6 +131,29 @@
 }
 
 @media screen and (max-width: 800px) {
+  header .main-header .logo,
+  header .main-header .links {
+    margin-right: 10px;
+  }
+  .register .container .box .grid-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .new-event .dialog-content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .events .events-container .event .image img,
+  .events .events-container .event .image {
+    height: 300px;
+  }
+  .events .events-container.inactive h2 {
+    text-align: center;
+  }
+  .events .about-aware {
+    margin-bottom: 0;
+  }
   .swiper-slide img,
   .swiper {
     height: 350px;
@@ -113,6 +192,29 @@
   }
 }
 @media screen and (max-width: 600px) {
+  header .main-header .action {
+    justify-content: center;
+  }
+  .register .container .box .content {
+    padding: 0 20px;
+  }
+  .register .container .box h1 {
+    font-size: 32px;
+  }
+  .events .events-container.inactive h2 {
+    font-size: 24px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .new-event .dialog-content .grid-3 {
+    flex-direction: column;
+    display: flex;
+    gap: 0px;
+  }
+  .new-event .dialog-content {
+    overflow-y: auto;
+    max-height: 700px;
+  }
   header .burger-menu .dropdown.active {
     left: unset;
     right: 30px;

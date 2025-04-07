@@ -18,6 +18,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
+      - ./back/staticfiles:/backend-staticfiles
       - certbot_challenge:/var/www/certbot
       - /etc/letsencrypt:/etc/letsencrypt
       - ./front/build:/usr/share/nginx/html
@@ -33,7 +34,39 @@ services:
       - certbot_challenge:/var/www/certbot
       - /etc/letsencrypt:/etc/letsencrypt
     entrypoint: sh -c "sleep infinity"
+  db:
+   image: mysql:latest
+   container_name: mysql-db
+   env_file:
+      - .env
+   environment:
+     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+     MYSQL_DATABASE: ${MYSQL_DATABASE}
+     MYSQL_USER: ${MYSQL_USER}
+     MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+   ports:
+     - "${DB_PORT}:3306"
+   volumes:
+     - mysql_data:/var/lib/mysql
+   restart: always
+  back:
+    build: ./back
+    container_name: django-backend
+    env_file:
+      - .env
+    environment:
+      - DJANGO_SETTINGS_MODULE=aware_back.settings
+      - DEBUG=True
+      - PYTHONPATH=/app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./back:/app
+    depends_on:
+      - db
+    restart: always
 
 volumes:
   certbot_challenge:
   certbot_letsencrypt:
+  mysql_data:

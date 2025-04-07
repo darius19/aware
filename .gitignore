@@ -2,7 +2,7 @@
 node_modules/
 build/
 dist/
-.env
+.env*
 .DS_Store
 
 # Excludem datele Let's Encrypt și Certbot
